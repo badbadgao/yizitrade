@@ -10,7 +10,6 @@ const App: React.FC = () => {
     <div className="App">
       This is the template for react with typescript, eslint, prettier
       {sum(1, 2)}
-      test
       <Header />
     </div>
   );
