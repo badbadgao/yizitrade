@@ -1,0 +1,40 @@
+.product {
+  height: 354px;
+  width: 249px;
+
+  .price {
+    margin-right: 8px;
+  }
+  
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .submitBtn {
+    background-color: #f40;
+    border-color: #f40;
+    box-shadow: none;
+    color: white;
+  
+    &:active,
+    &:focus,
+    &:hover {
+      color: white;
+      background-color: #F22D00;
+      border-color: #F22D00;
+      box-shadow: none;
+    }
+
+    &:active:focus {
+      box-shadow: none;
+    }
+  }
+
+  .price {
+    font-size: 17px
+  }
+}
