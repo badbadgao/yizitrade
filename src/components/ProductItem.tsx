@@ -1,34 +1,51 @@
-import { Card, Col, Button } from 'react-bootstrap';
 import TProduct from 'services/models/product';
-import porkribsImg from 'imgs/porkribs.jpg';
+import bali from 'imgs/bali.jpg';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import CardActionArea from '@mui/material/CardActionArea';
+import styled from '@emotion/styled';
 
 import './Product.scss';
 interface IProps {
   product: TProduct;
 }
 
+const StyledButton = styled(Button)`
+  width: 100%;
+  margin-bottom: 16px;
+`;
+
 const ProductItem = (props: IProps): JSX.Element => {
   const { product } = props;
 
   return (
-    <Col xs={12} md={4} lg={3} className="d-flex justify-content-center">
-      <Card className="product mt-3 mr-2 justify-content-between">
-        <Card.Img variant="top" src={`${porkribsImg}`} />
-        <Card.Body className="d-flex flex-column justify-content-between">
-          <div className="d-flex flex-column justify-content-start">
-            <div className="d-flex">
-              <Card.Title>{`$${product.price}`}</Card.Title>
-              <Card.Text style={{ marginRight: '8px', marginLeft: '8px' }}>/</Card.Text>
-              <Card.Text className="ml-2"> {product.priceUnit}</Card.Text>
-            </div>
-            <Card.Text className="description mb-2 text-muted">{product.description}</Card.Text>
-          </div>
-          <Button variant="primary" className="submitBtn w-100">
-            Add To Cart
-          </Button>
-        </Card.Body>
-      </Card>
-    </Col>
+    <Card>
+      <CardActionArea>
+        <CardMedia component="img" height="140" image={`${bali}`} alt="green iguana" />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {`$${product.price}`}
+          </Typography>
+          <Typography>Bali: 7-Night with Flights at Bali Garden Beach Resort</Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <StyledButton
+          size="small"
+          color="primary"
+          variant="outlined"
+          onClick={() => {
+            console.log('tell me what');
+          }}
+        >
+          Add To Cart
+        </StyledButton>
+      </CardActions>
+    </Card>
   );
 };
 
