@@ -1,11 +1,10 @@
 .product {
-  height: 354px;
   width: 249px;
 
   .price {
     margin-right: 8px;
   }
-  
+
   .description {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -19,13 +18,13 @@
     border-color: #f40;
     box-shadow: none;
     color: white;
-  
+
     &:active,
     &:focus,
     &:hover {
       color: white;
-      background-color: #F22D00;
-      border-color: #F22D00;
+      background-color: #f22d00;
+      border-color: #f22d00;
       box-shadow: none;
     }
 
@@ -35,6 +34,6 @@
   }
 
   .price {
-    font-size: 17px
+    font-size: 17px;
   }
 }
