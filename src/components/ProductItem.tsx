@@ -7,6 +7,8 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
+import Box from '@mui/material/Box';
+
 import styled from '@emotion/styled';
 
 import './Product.scss';
@@ -14,23 +16,42 @@ interface IProps {
   product: TProduct;
 }
 
+interface ICurrentPriceProps {
+  isOnSale: boolean;
+}
+
 const StyledButton = styled(Button)`
   width: 100%;
   margin-bottom: 16px;
 `;
 
+const StyledOriginalPrice = styled(Box)`
+  text-decoration: line-through;
+  color: grey;
+  font-size: 1.2rem;
+  margin-right: 16px;
+`;
+
+const StyledCurrentPrice = styled(Box)`
+  color: ${(props: ICurrentPriceProps) => (props.isOnSale ? 'red' : 'inherit;')};
+`;
+
 const ProductItem = (props: IProps): JSX.Element => {
   const { product } = props;
 
+  const isOnSale = product.originalPrice != product.currentPrice;
   return (
     <Card>
       <CardActionArea>
         <CardMedia component="img" height="140" image={`${bali}`} alt="green iguana" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {`$${product.price}`}
+            {isOnSale && <StyledOriginalPrice component="span">{`$${product.originalPrice}`}</StyledOriginalPrice>}
+            <StyledCurrentPrice isOnSale={isOnSale} component="span">{`$${product.currentPrice}`}</StyledCurrentPrice>
           </Typography>
-          <Typography>Bali: 7-Night with Flights at Bali Garden Beach Resort</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Bali: 7-Night with Flights at Bali Garden Beach Resort
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
