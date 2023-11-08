@@ -2,7 +2,9 @@ type TProduct = {
   name: string;
   description: string;
   qualityInStock: number;
-  price: number;
+  currentPrice?: number;
+  originalPrice: number;
+  discountOff?: number;
   priceUnit: string;
   id: string;
   soldQty: number;
