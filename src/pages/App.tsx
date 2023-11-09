@@ -15,7 +15,7 @@ const StyledBox = styled(Box)`
 `;
 
 const StyledGrid = styled(Grid)`
-  width: 90%;
+  max-width: 90%;
   margin: auto;
 `;
 
@@ -33,7 +33,7 @@ const App = (): JSX.Element => {
       <StyledBox>
         <StyledGrid container spacing={2}>
           {products?.map((product, id) => (
-            <Grid item xs={4} md={3} key={id}>
+            <Grid item xs={12} md={4} lg={3} key={id}>
               <ProductItem product={product} key={product.id} />
             </Grid>
           ))}

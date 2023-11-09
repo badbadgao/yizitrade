@@ -8,6 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
+import DiscountIcon from '@mui/icons-material/Discount';
 
 import styled from '@emotion/styled';
 
@@ -36,6 +37,13 @@ const StyledCurrentPrice = styled(Box)`
   color: ${(props: ICurrentPriceProps) => (props.isOnSale ? 'red' : 'inherit;')};
 `;
 
+const DiscountLabelIcon = styled(DiscountIcon)`
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  color: #f5bf42;
+`;
+
 const ProductItem = (props: IProps): JSX.Element => {
   const { product } = props;
 
@@ -43,6 +51,7 @@ const ProductItem = (props: IProps): JSX.Element => {
   return (
     <Card>
       <CardActionArea>
+        {isOnSale && <DiscountLabelIcon />}
         <CardMedia component="img" height="140" image={`${bali}`} alt="green iguana" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
