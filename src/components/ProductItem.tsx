@@ -8,7 +8,6 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
 import DiscountIcon from '@mui/icons-material/Discount';
 import styled from '@emotion/styled';
 
