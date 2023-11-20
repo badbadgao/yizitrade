@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
 import DiscountIcon from '@mui/icons-material/Discount';
-
 import styled from '@emotion/styled';
 
 import './Product.scss';
@@ -37,6 +36,13 @@ const StyledCurrentPrice = styled(Box)`
   color: ${(props: ICurrentPriceProps) => (props.isOnSale ? 'red' : 'inherit;')};
 `;
 
+const StyledSoldQuantity = styled(Box)`
+  font-size: 0.8rem;
+  position: absolute;
+  right: 0;
+  top: 8px;
+`;
+
 const DiscountLabelIcon = styled(DiscountIcon)`
   position: absolute;
   right: 2px;
@@ -44,23 +50,32 @@ const DiscountLabelIcon = styled(DiscountIcon)`
   color: #f5bf42;
 `;
 
-const ProductItem = (props: IProps): JSX.Element => {
-  const { product } = props;
+const SellInfoContainer = styled(Typography)`
+  position: relative;
+` as typeof Typography;
 
-  const isOnSale = product.originalPrice != product.currentPrice;
+const ProductItem = (props: IProps): JSX.Element => {
+  const { originalPrice, currentPrice, soldQty } = props.product;
+
+  const isOnSale = originalPrice != currentPrice;
+
   return (
     <Card>
       <CardActionArea>
         {isOnSale && <DiscountLabelIcon />}
         <CardMedia component="img" height="140" image={`${bali}`} alt="green iguana" />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {isOnSale && <StyledOriginalPrice component="span">{`$${product.originalPrice}`}</StyledOriginalPrice>}
-            <StyledCurrentPrice isOnSale={isOnSale} component="span">{`$${product.currentPrice}`}</StyledCurrentPrice>
+          <Typography variant="h6" color="text.primary">
+            Bali: 7-Night with Flights
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Bali: 7-Night with Flights at Bali Garden Beach Resort
+          <Typography variant="body1" color="text.secondary">
+            Great place enjoy your relaxing time!
           </Typography>
+          <SellInfoContainer gutterBottom variant="h5" component="div">
+            {isOnSale && <StyledOriginalPrice component="span">{`$${originalPrice}`}</StyledOriginalPrice>}
+            <StyledCurrentPrice isOnSale={isOnSale} component="span">{`$${currentPrice}`}</StyledCurrentPrice>
+            <StyledSoldQuantity component="span" color="text.secondary">{`${soldQty} SOLD`}</StyledSoldQuantity>
+          </SellInfoContainer>
         </CardContent>
       </CardActionArea>
       <CardActions>

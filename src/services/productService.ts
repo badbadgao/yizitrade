@@ -49,7 +49,7 @@ const products: TProduct[] = [
     discountOff: 0,
     priceUnit: 'KG',
     id: '4',
-    soldQty: 10213,
+    soldQty: 1023,
     special: true,
   },
   {
@@ -61,7 +61,7 @@ const products: TProduct[] = [
     discountOff: 0,
     priceUnit: 'KG',
     id: '5',
-    soldQty: 10213,
+    soldQty: 102,
     special: true,
   },
   {
@@ -72,7 +72,7 @@ const products: TProduct[] = [
     originalPrice: 10.99,
     priceUnit: 'KG',
     id: '6',
-    soldQty: 10213,
+    soldQty: 103,
     special: true,
   },
 ];
