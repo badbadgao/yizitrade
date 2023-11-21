@@ -9,6 +9,7 @@ import { productService } from 'services';
 import TProduct from 'services/models/product';
 
 import '../custom.scss';
+import Header from './Header';
 
 const StyledBox = styled(Box)`
   padding: 24px;
@@ -30,6 +31,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className="App">
+      <Header />
       <StyledBox>
         <StyledGrid container spacing={2}>
           {products?.map((product, id) => (
