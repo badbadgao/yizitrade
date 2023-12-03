@@ -1,4 +1,4 @@
-import TProduct from 'services/models/product';
+import { Product } from '__generated__/graphql';
 import bali from 'imgs/bali.jpg';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,7 +13,7 @@ import styled from '@emotion/styled';
 
 import './Product.scss';
 interface IProps {
-  product: TProduct;
+  product: Product;
 }
 
 interface ICurrentPriceProps {

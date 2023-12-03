@@ -1,11 +1,10 @@
-import React from 'react';
 import App from 'pages/App';
 import reportWebVitals from './reportWebVitals';
 import * as ReactDOM from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://flyby-router-demo.herokuapp.com/',
+  uri: 'http://localhost:4000/',
   cache: new InMemoryCache(),
 });
 
