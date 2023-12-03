@@ -1,4 +1,4 @@
-import TProduct from 'services/models/product';
+import { Product } from '__generated__/graphql';
 import bali from 'imgs/bali.jpg';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,7 +13,7 @@ import styled from '@emotion/styled';
 
 import './Product.scss';
 interface IProps {
-  product: TProduct;
+  product: Product;
 }
 
 interface ICurrentPriceProps {
@@ -54,8 +54,17 @@ const SellInfoContainer = styled(Typography)`
   position: relative;
 ` as typeof Typography;
 
+const StyledDesc = styled(Typography)`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+  height: 3rem;
+`;
+
 const ProductItem = (props: IProps): JSX.Element => {
-  const { originalPrice, currentPrice, soldQty } = props.product;
+  const { originalPrice, currentPrice, soldQty, name, description } = props.product;
 
   const isOnSale = originalPrice != currentPrice;
 
@@ -66,11 +75,11 @@ const ProductItem = (props: IProps): JSX.Element => {
         <CardMedia component="img" height="140" image={`${bali}`} alt="green iguana" />
         <CardContent>
           <Typography variant="h6" color="text.primary">
-            Bali: 7-Night with Flights
+            {name}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Great place enjoy your relaxing time!
-          </Typography>
+          <StyledDesc variant="body1" color="text.secondary">
+            {description}
+          </StyledDesc>
           <SellInfoContainer gutterBottom variant="h5" component="div">
             {isOnSale && <StyledOriginalPrice component="span">{`$${originalPrice}`}</StyledOriginalPrice>}
             <StyledCurrentPrice isOnSale={isOnSale} component="span">{`$${currentPrice}`}</StyledCurrentPrice>

@@ -1,4 +1,5 @@
 type TProduct = {
+  id: string;
   name: string;
   description: string;
   qualityInStock: number;
@@ -6,7 +7,6 @@ type TProduct = {
   originalPrice: number;
   discountOff?: number;
   priceUnit: string;
-  id: string;
   soldQty: number;
   special: boolean;
 };

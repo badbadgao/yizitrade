@@ -1,14 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import styled from '@emotion/styled';
+import { useQuery, gql } from '@apollo/client';
 
 import ProductItem from 'components/ProductItem';
-import { productService } from 'services';
-import TProduct from 'services/models/product';
+import { GetAllProductsQuery } from '__generated__/graphql';
 
-import '../custom.scss';
 import Header from './Header';
 
 const StyledBox = styled(Box)`
@@ -20,27 +17,44 @@ const StyledGrid = styled(Grid)`
   margin: auto;
 `;
 
+const GET_PRODUCTS = gql`
+  query GetAllProducts {
+    products {
+      id
+      name
+      description
+      currentPrice
+      originalPrice
+      priceUnit
+      soldQty
+      special
+      discountOff
+      qualityInStock
+    }
+  }
+`;
+
 const App = (): JSX.Element => {
-  const [products, setProducts] = useState<TProduct[]>();
+  const { loading, error, data } = useQuery<GetAllProductsQuery>(GET_PRODUCTS);
 
-  useEffect(() => {
-    productService.getProducts().then((products) => {
-      setProducts(products);
-    });
-  });
+  if (error) return <div>{error?.message}</div>;
 
+  console.log('books', data);
   return (
     <div className="App">
       <Header />
-      <StyledBox>
-        <StyledGrid container spacing={2}>
-          {products?.map((product, id) => (
-            <Grid item xs={12} md={4} lg={3} key={id}>
-              <ProductItem product={product} key={product.id} />
-            </Grid>
-          ))}
-        </StyledGrid>
-      </StyledBox>
+      {loading && <div>Loading</div>}
+      {data && (
+        <StyledBox>
+          <StyledGrid container spacing={2}>
+            {data.products?.map((product) => (
+              <Grid item xs={12} md={4} lg={3} key={product.id}>
+                <ProductItem product={product} key={product.id} />
+              </Grid>
+            ))}
+          </StyledGrid>
+        </StyledBox>
+      )}
     </div>
   );
 };

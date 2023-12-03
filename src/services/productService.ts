@@ -53,8 +53,8 @@ const products: TProduct[] = [
     special: true,
   },
   {
-    name: 'Chicken Drums',
-    description: 'New Zeland farm chicken',
+    name: 'Free range egges',
+    description: 'New Zeland free range egges',
     qualityInStock: 100,
     currentPrice: 9.99,
     originalPrice: 10.99,

@@ -12,6 +12,7 @@ import AndroidIcon from '@mui/icons-material/Android';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Button from '@mui/material/Button/Button';
 import styled from '@emotion/styled';
+import Badge from '@mui/material/Badge';
 
 const LoginButton = styled(Button)`
   color: white;
@@ -56,7 +57,9 @@ const Header = (): JSX.Element => {
         {auth && (
           <Box>
             <IconButton size="large" aria-label="shopping-cart" onClick={handleShoppingCart} color="inherit">
-              <ShoppingCartOutlinedIcon />
+              <Badge badgeContent={4} color="secondary">
+                <ShoppingCartOutlinedIcon />
+              </Badge>
             </IconButton>
 
             <IconButton
