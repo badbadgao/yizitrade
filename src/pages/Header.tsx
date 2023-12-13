@@ -13,6 +13,14 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Button from '@mui/material/Button/Button';
 import styled from '@emotion/styled';
 import Badge from '@mui/material/Badge';
+import { gql, useReactiveVar } from '@apollo/client';
+import { cartItemsVar } from 'cache';
+
+// export const GET_CART_ITEMS = gql`
+//   query GetCartItems {
+//     cartItems @client
+//   }
+// `;
 
 const LoginButton = styled(Button)`
   color: white;
@@ -20,6 +28,9 @@ const LoginButton = styled(Button)`
 const Header = (): JSX.Element => {
   const [auth, setAuth] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const cartItems = useReactiveVar(cartItemsVar);
+  // const { data } = useQuery(GET_CART_ITEMS);
 
   const handleLogin = (): void => {
     setAuth((auth) => !auth);
@@ -57,7 +68,7 @@ const Header = (): JSX.Element => {
         {auth && (
           <Box>
             <IconButton size="large" aria-label="shopping-cart" onClick={handleShoppingCart} color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={cartItems?.length} color="secondary">
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </IconButton>
