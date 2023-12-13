@@ -28,6 +28,7 @@ const GET_PRODUCTS = gql`
       special
       discountOff
       qualityInStock
+      isInCart @client
     }
   }
 `;
@@ -38,6 +39,7 @@ const Products = (): JSX.Element => {
   if (loading) return <div>Loading</div>;
   if (error) return <div>{error?.message}</div>;
 
+  console.log('data?.products', data?.products);
   return (
     <StyledBox>
       <StyledGrid container spacing={2}>

@@ -10,6 +10,8 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Box from '@mui/material/Box';
 import DiscountIcon from '@mui/icons-material/Discount';
 import styled from '@emotion/styled';
+import { cartItemsVar } from 'cache';
+import { useReactiveVar } from '@apollo/client';
 
 import './Product.scss';
 interface IProps {
@@ -64,7 +66,10 @@ const StyledDesc = styled(Typography)`
 `;
 
 const ProductItem = (props: IProps): JSX.Element => {
-  const { originalPrice, currentPrice, soldQty, name, description } = props.product;
+  const cartItems = useReactiveVar(cartItemsVar);
+  console.log('cartItems', cartItems);
+  const { originalPrice, currentPrice, soldQty, name, description, id } = props.product;
+  const isInCart = !!cartItems.find((cartItem) => cartItem === id);
 
   const isOnSale = originalPrice != currentPrice;
 
@@ -92,8 +97,9 @@ const ProductItem = (props: IProps): JSX.Element => {
           size="small"
           color="primary"
           variant="outlined"
+          disabled={isInCart}
           onClick={() => {
-            console.log('tell me what');
+            cartItemsVar([...cartItemsVar(), id]);
           }}
         >
           Add To Cart
