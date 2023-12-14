@@ -34,7 +34,9 @@ const StyledOriginalPrice = styled(Box)`
   margin-right: 16px;
 `;
 
-const StyledCurrentPrice = styled(Box)`
+const StyledCurrentPrice = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isOnSale',
+})`
   color: ${(props: ICurrentPriceProps) => (props.isOnSale ? 'red' : 'inherit;')};
 `;
 
@@ -67,7 +69,6 @@ const StyledDesc = styled(Typography)`
 
 const ProductItem = (props: IProps): JSX.Element => {
   const cartItems = useReactiveVar(cartItemsVar);
-  console.log('cartItems', cartItems);
   const { originalPrice, currentPrice, soldQty, name, description, id } = props.product;
   const isInCart = !!cartItems.find((cartItem) => cartItem === id);
 
