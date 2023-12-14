@@ -1,0 +1,5 @@
+# directive @client on FIELD
+
+type Product {
+  isInCart: Boolean!
+}

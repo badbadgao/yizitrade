@@ -13,7 +13,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Button from '@mui/material/Button/Button';
 import styled from '@emotion/styled';
 import Badge from '@mui/material/Badge';
-import { gql, useReactiveVar } from '@apollo/client';
+import { useReactiveVar } from '@apollo/client';
 import { cartItemsVar } from 'cache';
 
 // export const GET_CART_ITEMS = gql`
