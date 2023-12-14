@@ -35,6 +35,7 @@ const GET_PRODUCTS = gql`
 
 const Products = (): JSX.Element => {
   const { loading, error, data } = useQuery<GetAllProductsQuery>(GET_PRODUCTS);
+  // const { loading , error, data }= useGetAllProductsQuery()
 
   if (loading) return <div>Loading</div>;
   if (error) return <div>{error?.message}</div>;
